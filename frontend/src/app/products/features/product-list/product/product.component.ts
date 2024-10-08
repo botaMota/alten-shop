@@ -6,6 +6,9 @@ import { KEYS, Product } from "app/products/data-access/product.model";
 import { ProductsService } from "app/products/data-access/products.service";
 import { DataViewModule } from 'primeng/dataview';
 
+import { RatingModule } from 'primeng/rating';
+import { FormsModule } from "@angular/forms";
+
 const emptyProduct: Product = {
     id: 0,
     code: "",
@@ -28,7 +31,7 @@ const emptyProduct: Product = {
     templateUrl: "./product.component.html",
     styleUrls: ["./product.component.scss"],
     standalone: true,
-    imports: [CardModule, TagModule, ButtonModule, DataViewModule],
+    imports: [CardModule, TagModule, ButtonModule, DataViewModule,RatingModule,FormsModule],
 })
 export class ProductComponent implements OnInit {
 
@@ -79,9 +82,9 @@ export class ProductComponent implements OnInit {
 
 
 
-    public onAddToShoppingCart(productId: number) {
+    public onAddAndDeleteShoppingCart(productId: number) {
 
-        
+        console.log('salam');
         const jsonString = window.localStorage.getItem(KEYS.SHOPPINGCART);
         this.shoppingCartList = jsonString ? JSON.parse(jsonString) : null;
 
