@@ -81,7 +81,7 @@ export class ProductComponent implements OnInit {
 
     public onAddToShoppingCart(productId: number) {
 
-
+        
         const jsonString = window.localStorage.getItem(KEYS.SHOPPINGCART);
         this.shoppingCartList = jsonString ? JSON.parse(jsonString) : null;
 
@@ -95,9 +95,10 @@ export class ProductComponent implements OnInit {
             this.shoppingCartList = [];
             this.shoppingCartList.push(productId);
         }
-        console.log(this.shoppingCartList);
+        //console.log(this.shoppingCartList);
         const str = JSON.stringify(this.shoppingCartList);
         window.localStorage.setItem(KEYS.SHOPPINGCART, str)
+        this.productsService.badgeSubject.next(productId);
 
     }
 

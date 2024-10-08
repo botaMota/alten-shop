@@ -1,7 +1,7 @@
 import { Injectable, inject, signal } from "@angular/core";
 import { Product } from "./product.model";
 import { HttpClient } from "@angular/common/http";
-import { catchError, Observable, of, tap } from "rxjs";
+import { catchError, Observable, of, Subject, tap } from "rxjs";
 
 @Injectable({
     providedIn: "root"
@@ -13,6 +13,8 @@ import { catchError, Observable, of, tap } from "rxjs";
     private readonly _products = signal<Product[]>([]);
 
     public readonly products = this._products.asReadonly();
+
+    public badgeSubject = new Subject<number>;
 
     public shoppingCartList : number[] = [] ;
 
