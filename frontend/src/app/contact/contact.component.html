@@ -1,0 +1,32 @@
+<div class="content">
+  <div class="centered">
+    <form #form="ngForm" (ngSubmit)="onSend()">
+      <div class="form-field">
+        <label for="mail">Email</label>
+        <input pInputText #mail="ngModel" [class.is-invalid]="mail.invalid && mail.touched"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="mail" name="mail" type="email"
+          [(ngModel)]="contactModel.mail" required>
+
+        <div *ngIf="mail.errors && (mail.invalid || mail.touched)">
+          <small class="text-danger" *ngIf="mail.errors.required">Email is required</small>
+          <small class="text-danger" *ngIf="mail.errors.pattern">Please provide a valid email address</small>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label for="description">Message</label>
+        <textarea pInputTextarea #msg="ngModel" id="message" name="message" rows="5" cols="30" maxlength="300"
+          [class.is-invalid]="msg.invalid && msg.touched" [(ngModel)]="contactModel.message" required>
+        </textarea>
+
+        <div *ngIf="msg.errors && (msg.invalid || msg.touched)">
+          <small class="text-danger" *ngIf="msg.errors.required">Message is required</small>
+        </div>
+      </div>
+      <p-toast/>
+      <div style="margin-left: 2px ;">
+        <p-button type="submit" [disabled]="!form.valid" label="Envoyer" severity="success" />
+      </div>
+    </form>
+  </div>
+</div>
