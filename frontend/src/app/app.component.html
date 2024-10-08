@@ -29,7 +29,12 @@
     [style]="{ width: '50vw' }"
     header="Shopping-cart produits">
 
-    <app-product *ngFor="let product of selectedProducts" [product]="product" >
-    </app-product>
+    @if (isEmptyShoppingCart) {
+        <h2>No products in the Shopping-Cart</h2>
+    }@else {
+        <app-product  *ngFor="let product of selectedProducts" [product]="product" >
+        </app-product>
+    }
+    
    
 </p-dialog>

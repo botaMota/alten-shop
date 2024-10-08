@@ -33,6 +33,7 @@ export class AppComponent implements OnInit {
   private readonly productsService = inject(ProductsService);
 
   selectedProducts: Product[] = [];
+  isEmptyShoppingCart: boolean = true ;
 
 
 
@@ -61,6 +62,8 @@ export class AppComponent implements OnInit {
           if (!shoppingCartList.includes(product.id) && includesObject) {
             this.selectedProducts = this.selectedProducts.filter(item => item.id !== product.id);
           }
+
+          this.isEmptyShoppingCart = this.selectedProducts.length === 0 ? true : false ;
         })
       });
     }
