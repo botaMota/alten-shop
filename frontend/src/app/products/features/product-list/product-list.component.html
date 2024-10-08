@@ -2,7 +2,7 @@
 
 <p-button label="Créer produit" (onClick)="onCreate()" class="block text-center"/>
 
-<p-dataView #dv [value]="products()">
+<p-dataView #dv [value]="products()" [rows]="5" [paginator]="true" [rowsPerPageOptions]="[10, 20, 30]">
     <ng-template pTemplate="list" let-products>
         @for (product of products; track product) {
             <app-product [product]="product" />
